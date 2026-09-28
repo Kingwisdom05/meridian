@@ -1,0 +1,33 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "dependabot/npm_and_yarn/main/dotenv-18.0.3",
+    "dependabot/npm_and_yarn/main/eslint-10.11.0",
+    "dependabot/npm_and_yarn/main/lucide-react-1.48.0",
+    "dependabot/npm_and_yarn/main/prettier-3.9.9",
+    "dependabot/npm_and_yarn/main/react-i18next-17.0.15",
+    "dependabot/npm_and_yarn/main/turbo-2.11.4",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "dependabot/npm_and_yarn/main/dotenv-18.0.3": "main",
+    "dependabot/npm_and_yarn/main/eslint-10.11.0": "main",
+    "dependabot/npm_and_yarn/main/lucide-react-1.48.0": "main",
+    "dependabot/npm_and_yarn/main/prettier-3.9.9": "main",
+    "dependabot/npm_and_yarn/main/react-i18next-17.0.15": "main",
+    "dependabot/npm_and_yarn/main/turbo-2.11.4": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "dependabot/npm_and_yarn/main/dotenv-18.0.3",
+    "dependabot/npm_and_yarn/main/eslint-10.11.0",
+    "dependabot/npm_and_yarn/main/lucide-react-1.48.0",
+    "dependabot/npm_and_yarn/main/prettier-3.9.9",
+    "dependabot/npm_and_yarn/main/react-i18next-17.0.15",
+    "dependabot/npm_and_yarn/main/turbo-2.11.4",
+    "origin"
+  ]
+}
