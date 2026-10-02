@@ -2,10 +2,7 @@ import { describe, it, expect } from "vitest";
 import { FixedPointDecimal } from "./types";
 import type { AssetSymbol, SimulationTimestamp } from "./types";
 import { BacktestPriceFeed } from "./feeds";
-import {
-  DeltaNeutralStrategy,
-  StrategyLifecycleError,
-} from "./delta-neutral";
+import { DeltaNeutralStrategy, StrategyLifecycleError } from "./delta-neutral";
 import type {
   DeltaNeutralConfig,
   FundingBasisModel,
@@ -151,9 +148,9 @@ describe("DeltaNeutralStrategy open/step/close", () => {
     expect(orders).toHaveLength(1);
     expect(orders[0]!.book).toBe("hedge");
     expect(orders[0]!.side).toBe("sell");
-    expect(orders[0]!.notional.compareTo(FixedPointDecimal.fromString("400"))).toBe(
-      0
-    );
+    expect(
+      orders[0]!.notional.compareTo(FixedPointDecimal.fromString("400"))
+    ).toBe(0);
 
     expect(strategy.rebalanceCount).toBe(1);
     expect(strategy.netDelta.toStroops()).toBe(0n);
@@ -167,7 +164,9 @@ describe("DeltaNeutralStrategy open/step/close", () => {
 
     const last = strategy.deltaHistory[2]!;
     expect(last.rebalanced).toBe(true);
-    expect(last.netDeltaNotional.compareTo(FixedPointDecimal.fromString("390"))).toBe(1);
+    expect(
+      last.netDeltaNotional.compareTo(FixedPointDecimal.fromString("390"))
+    ).toBe(1);
   });
 
   it("stays neutral on a flat tick and keeps accruing funding", () => {
@@ -210,12 +209,9 @@ describe("DeltaNeutralStrategy open/step/close", () => {
     expect(strategy.netDelta.toStroops()).toBe(0n);
     expect(strategy.basisPnl.toString()).toBe("25");
 
-    const expectedPnl = pricePnl
-      .toStroops() + 3n * SCALE + 25n * SCALE;
+    const expectedPnl = pricePnl.toStroops() + 3n * SCALE + 25n * SCALE;
     expect(strategy.totalPnl.toStroops()).toBe(expectedPnl);
-    expect(strategy.equity.toStroops()).toBe(
-      CAPITAL.toStroops() + expectedPnl
-    );
+    expect(strategy.equity.toStroops()).toBe(CAPITAL.toStroops() + expectedPnl);
   });
 
   it("is deterministic across identical runs", () => {
