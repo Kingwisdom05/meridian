@@ -1,9 +1,5 @@
 import { FixedPointDecimal } from "./types";
-import type {
-  AssetSymbol,
-  PriceFeed,
-  SimulationTimestamp,
-} from "./types";
+import type { AssetSymbol, PriceFeed, SimulationTimestamp } from "./types";
 import type {
   Order,
   OrderSide,
@@ -48,7 +44,9 @@ function fpDiv(a: FixedPointDecimal, b: FixedPointDecimal): FixedPointDecimal {
   if (divisor === 0n) {
     throw new RangeError("delta-neutral: division by zero");
   }
-  return FixedPointDecimal.fromStroops((a.toStroops() * STROOPS_PER_UNIT) / divisor);
+  return FixedPointDecimal.fromStroops(
+    (a.toStroops() * STROOPS_PER_UNIT) / divisor
+  );
 }
 
 function fpAbs(a: FixedPointDecimal): FixedPointDecimal {
@@ -363,7 +361,10 @@ export class DeltaNeutralStrategy implements Strategy {
   readonly #observations: DeltaObservation[] = [];
 
   constructor(config: DeltaNeutralConfig) {
-    if (!Number.isInteger(config.rebalanceBandBps) || config.rebalanceBandBps < 0) {
+    if (
+      !Number.isInteger(config.rebalanceBandBps) ||
+      config.rebalanceBandBps < 0
+    ) {
       throw new DeltaNeutralConfigError(
         "rebalanceBandBps must be a non-negative integer"
       );
@@ -554,8 +555,7 @@ export class DeltaNeutralStrategy implements Strategy {
     this.#refreshDelta(price);
     const driftDelta = this.#netDelta;
     const driftNotional = this.#netDeltaNotional;
-    const rebalanced =
-      fpAbs(driftNotional).compareTo(this.#band()) > 0;
+    const rebalanced = fpAbs(driftNotional).compareTo(this.#band()) > 0;
     const orders: readonly Order[] = rebalanced ? this.rebalance(context) : [];
 
     this.#observations.push({
@@ -661,7 +661,9 @@ export class DeltaNeutralStrategy implements Strategy {
       );
     }
     if (this.#closed) {
-      throw new StrategyLifecycleError(`${this.id}: the book is already closed`);
+      throw new StrategyLifecycleError(
+        `${this.id}: the book is already closed`
+      );
     }
   }
 
